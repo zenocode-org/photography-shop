@@ -232,7 +232,7 @@ export default function PhotoForm({
       );
     }
   };
-    
+
   return (
     <div className="space-y-8 max-w-[38rem] relative">
       <div className="flex gap-2">

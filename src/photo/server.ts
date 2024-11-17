@@ -118,9 +118,6 @@ const resizeImage = async (
   image_width_resize: number = IMAGE_WIDTH_RESIZE
 ) => generateBase64(image, sharp => sharp.resize(image_width_resize));
 
-// https://github.com/lovell/sharp/issues/2168
-// https://stackoverflow.com/questions/68429071/in-nodejs-sharp-package-how-to-add-two-image-into-a-single-image
-
 export const addOverlayImageBuffer = async (
   image: ArrayBuffer,
   overlayImage: ArrayBuffer
@@ -128,6 +125,7 @@ export const addOverlayImageBuffer = async (
   sharp(image)
     .composite([{input: Buffer.from(overlayImage), tile: true}])
     .toBuffer();
+
 const blurImage = async (image: ArrayBuffer) =>
   generateBase64(image, sharp =>
     sharp.resize(IMAGE_WIDTH_BLUR).modulate({saturation: 1.15}).blur(4)
